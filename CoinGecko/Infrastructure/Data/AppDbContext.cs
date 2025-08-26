@@ -6,6 +6,13 @@ namespace Infrastructure.Repositories;
 public class AppDbContext(DbContextOptions<AppDbContext> options) : DbContext(options)
 {
 
-    public DbSet<CryptoPrice> MyProperty { get; set; }
+    public DbSet<CryptoPrice> CryptoPrices { get; set; }
+
+    protected override void OnModelCreating(ModelBuilder modelBuilder)
+    {
+        modelBuilder.Entity<CryptoPrice>()
+            .Property(p => p.PriceUsd)
+            .HasColumnType("decimal(18,4)");
+    }
 
 }
