@@ -1,8 +1,10 @@
 using Infrastructure.Repositories;
 using Microsoft.EntityFrameworkCore;
+DotNetEnv.Env.Load();
+
 
 var builder = WebApplication.CreateBuilder(args);
-string? connectionString = Environment.GetEnvironmentVariable("ConnectionString__SQLServer");
+string connectionString = Environment.GetEnvironmentVariable("ConnectionString__SQLServer");
 
 // Add services to the container.
 
@@ -11,7 +13,9 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddDbContext<AppDbContext>(options =>
-    options.UseSqlServer(builder.Configuration.GetConnectionString(connectionString)));
+        options.UseSqlServer(connectionString, b => b.MigrationsAssembly("Infrastructure")
+    )
+);
 
 
 var app = builder.Build();
