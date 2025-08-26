@@ -1,0 +1,2 @@
+# BelloSoft_Test
+Develop a .NET 8 Web API that integrates with a third-party API of your choice (e.g., weather, news, or open APIs like JSONPlaceholder) while demonstrating knowledge in key technologies and practices.
