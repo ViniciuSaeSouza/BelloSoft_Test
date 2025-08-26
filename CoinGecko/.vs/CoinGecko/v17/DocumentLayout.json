@@ -1,7 +1,52 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\Vinic\\Documents\\programacao\\teste-BelloSoft\\CoinGecko\\",
-  "Documents": [],
+  "WorkspaceRootPath": "C:\\Users\\Vinic\\Documents\\programacao\\BelloSoft_Test\\CoinGecko\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{74FC6388-2902-4C15-9ABA-054C689A7080}|API\\API.csproj|c:\\users\\vinic\\documents\\programacao\\bellosoft_test\\coingecko\\api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{74FC6388-2902-4C15-9ABA-054C689A7080}|API\\API.csproj|solutionrelative:api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{74FC6388-2902-4C15-9ABA-054C689A7080}|API\\API.csproj|c:\\users\\vinic\\documents\\programacao\\bellosoft_test\\coingecko\\api\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{74FC6388-2902-4C15-9ABA-054C689A7080}|API\\API.csproj|solutionrelative:api\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{74FC6388-2902-4C15-9ABA-054C689A7080}|API\\API.csproj|c:\\users\\vinic\\documents\\programacao\\bellosoft_test\\coingecko\\api\\api.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "RelativeMoniker": "D:0:0:{74FC6388-2902-4C15-9ABA-054C689A7080}|API\\API.csproj|solutionrelative:api\\api.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{74FC6388-2902-4C15-9ABA-054C689A7080}|API\\API.csproj|c:\\users\\vinic\\documents\\programacao\\bellosoft_test\\coingecko\\api\\.env||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "RelativeMoniker": "D:0:0:{74FC6388-2902-4C15-9ABA-054C689A7080}|API\\API.csproj|solutionrelative:api\\.env||{8B382828-6202-11D1-8870-0000F87579D2}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{276C78E9-8526-41C2-A0E2-8122A15A9B5A}|Infrastructure\\Infrastructure.csproj|c:\\users\\vinic\\documents\\programacao\\bellosoft_test\\coingecko\\infrastructure\\data\\appdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{276C78E9-8526-41C2-A0E2-8122A15A9B5A}|Infrastructure\\Infrastructure.csproj|solutionrelative:infrastructure\\data\\appdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7D18F8A7-E265-4D91-8805-0427E29DADE3}|Repositories\\Domain.csproj|c:\\users\\vinic\\documents\\programacao\\bellosoft_test\\coingecko\\repositories\\entities\\cryptoprice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7D18F8A7-E265-4D91-8805-0427E29DADE3}|Repositories\\Domain.csproj|solutionrelative:repositories\\entities\\cryptoprice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7D18F8A7-E265-4D91-8805-0427E29DADE3}|Repositories\\Domain.csproj|c:\\users\\vinic\\documents\\programacao\\bellosoft_test\\coingecko\\repositories\\domain.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "RelativeMoniker": "D:0:0:{7D18F8A7-E265-4D91-8805-0427E29DADE3}|Repositories\\Domain.csproj|solutionrelative:repositories\\domain.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{276C78E9-8526-41C2-A0E2-8122A15A9B5A}|Infrastructure\\Infrastructure.csproj|c:\\users\\vinic\\documents\\programacao\\bellosoft_test\\coingecko\\infrastructure\\infrastructure.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "RelativeMoniker": "D:0:0:{276C78E9-8526-41C2-A0E2-8122A15A9B5A}|Infrastructure\\Infrastructure.csproj|solutionrelative:infrastructure\\infrastructure.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7D18F8A7-E265-4D91-8805-0427E29DADE3}|Repositories\\Domain.csproj|c:\\users\\vinic\\documents\\programacao\\bellosoft_test\\coingecko\\repositories\\interfaces\\icryptorepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7D18F8A7-E265-4D91-8805-0427E29DADE3}|Repositories\\Domain.csproj|solutionrelative:repositories\\interfaces\\icryptorepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7D18F8A7-E265-4D91-8805-0427E29DADE3}|Repositories\\Domain.csproj|c:\\users\\vinic\\documents\\programacao\\bellosoft_test\\coingecko\\repositories\\interfaces\\icoingeckoservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7D18F8A7-E265-4D91-8805-0427E29DADE3}|Repositories\\Domain.csproj|solutionrelative:repositories\\interfaces\\icoingeckoservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{276C78E9-8526-41C2-A0E2-8122A15A9B5A}|Infrastructure\\Infrastructure.csproj|c:\\users\\vinic\\documents\\programacao\\bellosoft_test\\coingecko\\infrastructure\\services\\coingeckoservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{276C78E9-8526-41C2-A0E2-8122A15A9B5A}|Infrastructure\\Infrastructure.csproj|solutionrelative:infrastructure\\services\\coingeckoservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
   "DocumentGroupContainers": [
     {
       "Orientation": 0,
@@ -9,8 +54,112 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": -1,
+          "SelectedChildIndex": 0,
           "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\Vinic\\Documents\\programacao\\BelloSoft_Test\\CoinGecko\\API\\Program.cs",
+              "RelativeDocumentMoniker": "API\\Program.cs",
+              "ToolTip": "C:\\Users\\Vinic\\Documents\\programacao\\BelloSoft_Test\\CoinGecko\\API\\Program.cs",
+              "RelativeToolTip": "API\\Program.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABEAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-26T19:06:53.548Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": ".env",
+              "DocumentMoniker": "C:\\Users\\Vinic\\Documents\\programacao\\BelloSoft_Test\\CoinGecko\\API\\.env",
+              "RelativeDocumentMoniker": "API\\.env",
+              "ToolTip": "C:\\Users\\Vinic\\Documents\\programacao\\BelloSoft_Test\\CoinGecko\\API\\.env",
+              "RelativeToolTip": "API\\.env",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAABzAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
+              "WhenOpened": "2025-08-26T19:15:11.548Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "appsettings.json",
+              "DocumentMoniker": "C:\\Users\\Vinic\\Documents\\programacao\\BelloSoft_Test\\CoinGecko\\API\\appsettings.json",
+              "RelativeDocumentMoniker": "API\\appsettings.json",
+              "ToolTip": "C:\\Users\\Vinic\\Documents\\programacao\\BelloSoft_Test\\CoinGecko\\API\\appsettings.json",
+              "RelativeToolTip": "API\\appsettings.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAyAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2025-08-26T19:13:25.75Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "API",
+              "DocumentMoniker": "C:\\Users\\Vinic\\Documents\\programacao\\BelloSoft_Test\\CoinGecko\\API\\API.csproj",
+              "RelativeDocumentMoniker": "API\\API.csproj",
+              "ToolTip": "C:\\Users\\Vinic\\Documents\\programacao\\BelloSoft_Test\\CoinGecko\\API\\API.csproj",
+              "RelativeToolTip": "API\\API.csproj",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABUAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2025-08-26T19:06:57.789Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "Infrastructure",
+              "DocumentMoniker": "C:\\Users\\Vinic\\Documents\\programacao\\BelloSoft_Test\\CoinGecko\\Infrastructure\\Infrastructure.csproj",
+              "RelativeDocumentMoniker": "Infrastructure\\Infrastructure.csproj",
+              "ToolTip": "C:\\Users\\Vinic\\Documents\\programacao\\BelloSoft_Test\\CoinGecko\\Infrastructure\\Infrastructure.csproj",
+              "RelativeToolTip": "Infrastructure\\Infrastructure.csproj",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2025-08-26T19:03:30.905Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "ICryptoRepository.cs",
+              "DocumentMoniker": "C:\\Users\\Vinic\\Documents\\programacao\\BelloSoft_Test\\CoinGecko\\Repositories\\Interfaces\\ICryptoRepository.cs",
+              "RelativeDocumentMoniker": "Repositories\\Interfaces\\ICryptoRepository.cs",
+              "ToolTip": "C:\\Users\\Vinic\\Documents\\programacao\\BelloSoft_Test\\CoinGecko\\Repositories\\Interfaces\\ICryptoRepository.cs",
+              "RelativeToolTip": "Repositories\\Interfaces\\ICryptoRepository.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAA7AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-26T18:56:24.394Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "ICoinGeckoService.cs",
+              "DocumentMoniker": "C:\\Users\\Vinic\\Documents\\programacao\\BelloSoft_Test\\CoinGecko\\Repositories\\Interfaces\\ICoinGeckoService.cs",
+              "RelativeDocumentMoniker": "Repositories\\Interfaces\\ICoinGeckoService.cs",
+              "ToolTip": "C:\\Users\\Vinic\\Documents\\programacao\\BelloSoft_Test\\CoinGecko\\Repositories\\Interfaces\\ICoinGeckoService.cs",
+              "RelativeToolTip": "Repositories\\Interfaces\\ICoinGeckoService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAGAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-26T18:52:59.959Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "Domain",
+              "DocumentMoniker": "C:\\Users\\Vinic\\Documents\\programacao\\BelloSoft_Test\\CoinGecko\\Repositories\\Domain.csproj",
+              "RelativeDocumentMoniker": "Repositories\\Domain.csproj",
+              "ToolTip": "C:\\Users\\Vinic\\Documents\\programacao\\BelloSoft_Test\\CoinGecko\\Repositories\\Domain.csproj",
+              "RelativeToolTip": "Repositories\\Domain.csproj",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2025-08-26T18:52:43.181Z",
+              "EditorCaption": ""
+            },
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{aa2115a1-9712-457b-9047-dbb71ca2cdd2}"
@@ -26,6 +175,45 @@
             {
               "$type": "Bookmark",
               "Name": "ST:128:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "AppDbContext.cs",
+              "DocumentMoniker": "C:\\Users\\Vinic\\Documents\\programacao\\BelloSoft_Test\\CoinGecko\\Infrastructure\\Data\\AppDbContext.cs",
+              "RelativeDocumentMoniker": "Infrastructure\\Data\\AppDbContext.cs",
+              "ToolTip": "C:\\Users\\Vinic\\Documents\\programacao\\BelloSoft_Test\\CoinGecko\\Infrastructure\\Data\\AppDbContext.cs",
+              "RelativeToolTip": "Infrastructure\\Data\\AppDbContext.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-26T18:43:01.937Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "CoinGeckoService.cs",
+              "DocumentMoniker": "C:\\Users\\Vinic\\Documents\\programacao\\BelloSoft_Test\\CoinGecko\\Infrastructure\\Services\\CoinGeckoService.cs",
+              "RelativeDocumentMoniker": "Infrastructure\\Services\\CoinGeckoService.cs",
+              "ToolTip": "C:\\Users\\Vinic\\Documents\\programacao\\BelloSoft_Test\\CoinGecko\\Infrastructure\\Services\\CoinGeckoService.cs",
+              "RelativeToolTip": "Infrastructure\\Services\\CoinGeckoService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-26T18:41:50.151Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "CryptoPrice.cs",
+              "DocumentMoniker": "C:\\Users\\Vinic\\Documents\\programacao\\BelloSoft_Test\\CoinGecko\\Repositories\\Entities\\CryptoPrice.cs",
+              "RelativeDocumentMoniker": "Repositories\\Entities\\CryptoPrice.cs",
+              "ToolTip": "C:\\Users\\Vinic\\Documents\\programacao\\BelloSoft_Test\\CoinGecko\\Repositories\\Entities\\CryptoPrice.cs",
+              "RelativeToolTip": "Repositories\\Entities\\CryptoPrice.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAAaAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-26T18:38:55.778Z",
+              "EditorCaption": ""
             }
           ]
         }
