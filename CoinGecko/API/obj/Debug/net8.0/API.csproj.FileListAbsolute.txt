@@ -176,3 +176,5 @@ C:\Users\Vinic\Documents\programacao\BelloSoft_Test\CoinGecko\API\obj\Debug\net8
 C:\Users\Vinic\Documents\programacao\BelloSoft_Test\CoinGecko\API\obj\Debug\net8.0\API.genruntimeconfig.cache
 C:\Users\Vinic\Documents\programacao\BelloSoft_Test\CoinGecko\API\obj\Debug\net8.0\ref\API.dll
 C:\Users\Vinic\Documents\programacao\BelloSoft_Test\CoinGecko\API\obj\Debug\net8.0\staticwebassets.upToDateCheck.txt
+C:\Users\Vinic\Documents\programacao\BelloSoft_Test\CoinGecko\API\bin\Debug\net8.0\Application.dll
+C:\Users\Vinic\Documents\programacao\BelloSoft_Test\CoinGecko\API\bin\Debug\net8.0\Application.pdb

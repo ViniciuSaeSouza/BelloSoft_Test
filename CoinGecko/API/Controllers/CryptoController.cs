@@ -17,6 +17,7 @@ namespace API.Controllers
             _coinGeckoService = coinGeckoService;
         }
 
+        //TODO: Add get all crypto Id's and currency's endopoints
         // GET: api/<PricesController>
         //[HttpGet]
         //public IEnumerable<string> Get()
@@ -30,7 +31,7 @@ namespace API.Controllers
         {
             try
             { 
-                Crypto crypto = await _coinGeckoService.GetCryptoInfoAsync(cryptoId, currency);
+                Crypto crypto = await _coinGeckoService.GetCryptoAsync(cryptoId, currency);
                 if (crypto != null) return Ok(crypto);
                 return NotFound();
             }

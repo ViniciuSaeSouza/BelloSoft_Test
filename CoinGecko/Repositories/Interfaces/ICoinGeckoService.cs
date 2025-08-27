@@ -5,5 +5,5 @@ namespace Domain.Interfaces;
 
 public interface ICoinGeckoService
 {
-    Task<Crypto?> GetCryptoInfoAsync(string cryptoId, string currency);
+    Task<Crypto?> GetCryptoAsync(string cryptoId, string currency);
 }
