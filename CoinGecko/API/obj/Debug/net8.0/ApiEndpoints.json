@@ -1,0 +1,23 @@
+[
+  {
+    "ContainingType": "API.Controllers.CryptoController",
+    "Method": "Get",
+    "RelativePath": "prices",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "cryptoId",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "currency",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  }
+]
