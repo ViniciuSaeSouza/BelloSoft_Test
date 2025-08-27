@@ -157,11 +157,9 @@ C:\Users\Vinic\Documents\programacao\BelloSoft_Test\CoinGecko\API\bin\Debug\net8
 C:\Users\Vinic\Documents\programacao\BelloSoft_Test\CoinGecko\API\bin\Debug\net8.0\runtimes\win\lib\net6.0\System.Security.Cryptography.ProtectedData.dll
 C:\Users\Vinic\Documents\programacao\BelloSoft_Test\CoinGecko\API\bin\Debug\net8.0\runtimes\browser\lib\net8.0\System.Text.Encodings.Web.dll
 C:\Users\Vinic\Documents\programacao\BelloSoft_Test\CoinGecko\API\bin\Debug\net8.0\runtimes\win\lib\net6.0\System.Windows.Extensions.dll
-C:\Users\Vinic\Documents\programacao\BelloSoft_Test\CoinGecko\API\bin\Debug\net8.0\Application.dll
 C:\Users\Vinic\Documents\programacao\BelloSoft_Test\CoinGecko\API\bin\Debug\net8.0\Domain.dll
 C:\Users\Vinic\Documents\programacao\BelloSoft_Test\CoinGecko\API\bin\Debug\net8.0\Infrastructure.dll
 C:\Users\Vinic\Documents\programacao\BelloSoft_Test\CoinGecko\API\bin\Debug\net8.0\Infrastructure.pdb
-C:\Users\Vinic\Documents\programacao\BelloSoft_Test\CoinGecko\API\bin\Debug\net8.0\Application.pdb
 C:\Users\Vinic\Documents\programacao\BelloSoft_Test\CoinGecko\API\bin\Debug\net8.0\Domain.pdb
 C:\Users\Vinic\Documents\programacao\BelloSoft_Test\CoinGecko\API\obj\Debug\net8.0\rjimswa.dswa.cache.json
 C:\Users\Vinic\Documents\programacao\BelloSoft_Test\CoinGecko\API\obj\Debug\net8.0\rjsmrazor.dswa.cache.json
@@ -178,3 +176,5 @@ C:\Users\Vinic\Documents\programacao\BelloSoft_Test\CoinGecko\API\obj\Debug\net8
 C:\Users\Vinic\Documents\programacao\BelloSoft_Test\CoinGecko\API\obj\Debug\net8.0\API.genruntimeconfig.cache
 C:\Users\Vinic\Documents\programacao\BelloSoft_Test\CoinGecko\API\obj\Debug\net8.0\ref\API.dll
 C:\Users\Vinic\Documents\programacao\BelloSoft_Test\CoinGecko\API\obj\Debug\net8.0\staticwebassets.upToDateCheck.txt
+C:\Users\Vinic\Documents\programacao\BelloSoft_Test\CoinGecko\API\bin\Debug\net8.0\Application.dll
+C:\Users\Vinic\Documents\programacao\BelloSoft_Test\CoinGecko\API\bin\Debug\net8.0\Application.pdb

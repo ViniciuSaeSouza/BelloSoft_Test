@@ -1,13 +1,15 @@
+using Domain.Interfaces;
 using Infrastructure.Repositories;
+using Infrastructure.Services;
 using Microsoft.EntityFrameworkCore;
-DotNetEnv.Env.Load();
 
+
+DotNetEnv.Env.Load();
 
 var builder = WebApplication.CreateBuilder(args);
 string connectionString = Environment.GetEnvironmentVariable("ConnectionString__SQLServer");
 
 // Add services to the container.
-
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
@@ -16,6 +18,8 @@ builder.Services.AddDbContext<AppDbContext>(options =>
         options.UseSqlServer(connectionString, b => b.MigrationsAssembly("Infrastructure")
     )
 );
+builder.Services.AddScoped<ICoinGeckoService, CoinGeckoService>();
+builder.Services.AddHttpClient<ICoinGeckoService, CoinGeckoService>();
 
 
 var app = builder.Build();
