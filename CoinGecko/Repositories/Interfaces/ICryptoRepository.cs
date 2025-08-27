@@ -4,6 +4,6 @@ namespace Domain.Interfaces;
 
 public interface ICryptoRepository
 {
-    Task SavePriceAsync(CryptoPrice price);
-    Task<List<CryptoPrice>> GetHistoryAsync(string symbol);
+    Task SavePriceAsync(Crypto price);
+    Task<List<Crypto>> GetHistoryAsync(string symbol);
 }
