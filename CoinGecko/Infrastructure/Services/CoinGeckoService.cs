@@ -9,9 +9,17 @@ namespace Infrastructure.Services;
 
 public class CoinGeckoService : ICoinGeckoService
 {
+    public readonly HttpClient _httpClient;
+    private readonly string baseAddress = "https://api.coingecko.com/api/v3/simple/price";
+
+    public CoinGeckoService(HttpClient httpClient)
+    {
+        _httpClient = httpClient;
+        _httpClient.BaseAddress = new Uri(baseAddress);
+    }
     public async Task<Crypto?> GetCryptoInfoAsync(string cryptoId, string currencyParam)
     {
-        var baseAddress = "https://api.coingecko.com/api/v3/simple/price";
+        
         using HttpClient client = new HttpClient() { BaseAddress = new Uri(baseAddress) };
         try
         {
@@ -30,7 +38,7 @@ public class CoinGeckoService : ICoinGeckoService
 
                 return new Crypto
                 {
-                    Id = cryptoId,
+                    CryptoId = cryptoId,
                     Currency = currencyParam,
                     Price = price,
                     Change24hr = change24hr,
