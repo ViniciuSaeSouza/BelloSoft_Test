@@ -19,6 +19,8 @@ public class CoinGeckoService : ICoinGeckoService
     //TODO: Refactor to suppot multiple cryptoId's and currency's
     public async Task<Crypto?> GetCryptoAsync(string cryptoId, string currency)
     {
+        var queryParam = $"simple/price?vs_currencies={currency}&ids={cryptoId}&include_24hr_change=true";
+
         try
         {
             if (string.IsNullOrEmpty(cryptoId) || string.IsNullOrEmpty(currency)) return null;
@@ -26,7 +28,7 @@ public class CoinGeckoService : ICoinGeckoService
             string? result = await FetchCryptoDataAsync(cryptoId, currency);
             if (string.IsNullOrEmpty(result)) return null;
 
-            Dictionary<string, Dictionary<string, decimal>>? data = DeserializeData(result, cryptoId);
+            Dictionary<string, Dictionary<string, decimal>>? data = DeserializeData<Dictionary<string, Dictionary<string, decimal>>>(result);
             if (data == null || data.Count == 0) return null;
 
             Crypto? crypto = MapToCrypto(cryptoId, currency, data);
@@ -41,10 +43,36 @@ public class CoinGeckoService : ICoinGeckoService
         return null;
     }
 
+    public async Task<IReadOnlyList<Coin>?> GetCoinsAsync()
+    {
+        var queryParams = "coins/list";
+        try
+        {
+            string? result = await _httpClient.GetStringAsync(queryParams);
+            if (!string.IsNullOrEmpty(result))
+            {
+                IReadOnlyList<Coin>? coins = DeserializeData<IReadOnlyList<Coin>>(result);
+                if (coins != null) return coins;
+            }
+            
+        }catch(HttpRequestException ex)
+        {
+            Console.WriteLine($"HTTP Error getting coins from api: {ex.Message}");
+        }catch(Exception ex)
+        {
+            Console.WriteLine($"Error getting coins info list: {ex.Message}");
+        }
+
+        return Array.Empty<Coin>();
+    }
+
+
     private async Task<string?> FetchCryptoDataAsync(string cryptoId, string currencyParam)
     {
         try
         {
+
+            //string? response = await _httpClient.GetStringAsync($"simple/price?vs_currencies={currencyParam}&ids={cryptoId}&include_24hr_change=true");
             string? response = await _httpClient.GetStringAsync($"simple/price?vs_currencies={currencyParam}&ids={cryptoId}&include_24hr_change=true");
 
             if (!string.IsNullOrEmpty(response)) return response;
@@ -57,29 +85,30 @@ public class CoinGeckoService : ICoinGeckoService
         return null;
     }
 
-    private Dictionary<string, Dictionary<string, decimal>>? DeserializeData(string result, string cryptoId)
+    private T? DeserializeData<T>(string result)
     {
         try
         {
-            if (string.IsNullOrEmpty(result)) return null;
+            if (string.IsNullOrEmpty(result)) return default;
 
             var serializer = new JsonSerializerOptions
             {
                 PropertyNameCaseInsensitive = true
             };
 
-            var data = JsonSerializer.Deserialize<Dictionary<string, Dictionary<string, decimal>>>(result, serializer);
+            var data = JsonSerializer.Deserialize<T>(result, serializer);
 
             if (data != null) return data;
-            return null;
+            return default;
 
         }
         catch (Exception ex)
         {
             Console.WriteLine("Error during deserialization");
         }
-        return null;
+        return default;
     }
+
     private Crypto? MapToCrypto(string cryptoId, string currency, Dictionary<string, Dictionary<string, decimal>> data)
     {
         try

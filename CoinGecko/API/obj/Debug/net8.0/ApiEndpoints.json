@@ -1,8 +1,18 @@
 [
   {
     "ContainingType": "API.Controllers.CryptoController",
+    "Method": "GetCoins",
+    "RelativePath": "api/Crypto/coins",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "API.Controllers.CryptoController",
     "Method": "Get",
-    "RelativePath": "prices",
+    "RelativePath": "api/Crypto/prices",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,

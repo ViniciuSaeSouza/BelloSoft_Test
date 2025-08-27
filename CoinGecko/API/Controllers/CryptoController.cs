@@ -1,6 +1,8 @@
 ﻿using Domain.Entities;
 using Domain.Interfaces;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.IdentityModel.Tokens;
+using System.Net;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -18,19 +20,33 @@ namespace API.Controllers
         }
 
         //TODO: Add get all crypto Id's and currency's endopoints
-        // GET: api/<PricesController>
-        //[HttpGet]
-        //public IEnumerable<string> Get()
-        //{
-        //    return new string[] { "value1", "value2" };
-        //}
+
+        //TODO: Add Pagination to GetCoins endpoint
+        /// <summary>
+        /// Retrieves all coin id's from CoinGecko
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet("coins")]
+        public async Task<IActionResult> GetCoins()
+        {
+            try
+            {
+                var coins = await _coinGeckoService.GetCoinsAsync();    
+                return Ok(coins);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, $"Internal Server error: {ex.Message}");
+            }
+
+        }
 
         // GET api/<PricesController>/5
-        [HttpGet("/prices")]
+        [HttpGet("prices")]
         public async Task<IActionResult> Get([FromQuery] string cryptoId, [FromQuery] string currency)
         {
             try
-            { 
+            {
                 Crypto crypto = await _coinGeckoService.GetCryptoAsync(cryptoId, currency);
                 if (crypto != null) return Ok(crypto);
                 return NotFound();
