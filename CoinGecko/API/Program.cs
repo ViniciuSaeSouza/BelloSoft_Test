@@ -1,4 +1,6 @@
+using Domain.Interfaces;
 using Infrastructure.Repositories;
+using Infrastructure.Services;
 using Microsoft.EntityFrameworkCore;
 DotNetEnv.Env.Load();
 
@@ -16,6 +18,8 @@ builder.Services.AddDbContext<AppDbContext>(options =>
         options.UseSqlServer(connectionString, b => b.MigrationsAssembly("Infrastructure")
     )
 );
+
+builder.Services.AddScoped<ICoinGeckoService, CoinGeckoService>();
 
 
 var app = builder.Build();
