@@ -98,6 +98,36 @@
           }
         }
       }
+    },
+    "/api/Crypto/prices/history": {
+      "get": {
+        "tags": [
+          "Crypto"
+        ],
+        "parameters": [
+          {
+            "name": "cryptoId",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "default": "bitcoin"
+            }
+          },
+          {
+            "name": "currency",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "default": "usd"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
     }
   },
   "components": { }

@@ -4,6 +4,7 @@ using Infrastructure.Repositories;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Infrastructure.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250828210743_CryptoHistory_v2")]
+    partial class CryptoHistory_v2
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -24,16 +27,11 @@ namespace Infrastructure.Migrations
 
             modelBuilder.Entity("Domain.Entities.Crypto", b =>
                 {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<string>("CryptoId")
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<decimal>("Change24hrPercentage")
-                        .HasColumnType("decimal(3,2)");
-
-                    b.Property<string>("CryptoId")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("decimal(18,4)");
 
                     b.Property<string>("Currency")
                         .IsRequired()
@@ -45,7 +43,7 @@ namespace Infrastructure.Migrations
                     b.Property<DateTime>("RetrievedAt")
                         .HasColumnType("datetime2");
 
-                    b.HasKey("Id");
+                    b.HasKey("CryptoId");
 
                     b.ToTable("CryptoHistory");
                 });

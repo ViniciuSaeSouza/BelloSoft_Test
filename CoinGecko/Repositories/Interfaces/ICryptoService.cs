@@ -1,13 +1,11 @@
 ﻿using Domain.Entities;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Domain.DTOS;
 
 namespace Domain.Interfaces;
 
 public interface ICryptoService
 {
     public Task<Crypto?> GetCryptoInfo(string cryptoId, string currency);
+    Task<CryptoHistoryStats?> GetCryptoHistoryStats(string cryptoId, string currency);
+    
 }

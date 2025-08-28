@@ -173,7 +173,7 @@ public class CoinGeckoService : ICoinGeckoService
             CryptoId = cryptoId,
             Currency = currency,
             Price = price,
-            Change24hr = change24hr,
+            Change24hrPercentage = change24hr,
             RetrievedAt = DateTime.Now
         };
 

@@ -1,4 +1,5 @@
 ﻿using Domain.Entities;
+using Domain.Exceptions;
 using Domain.Interfaces;
 using Infrastructure.Exceptions;
 using Microsoft.AspNetCore.Mvc;
@@ -35,7 +36,8 @@ namespace API.Controllers
             try
             {
                 var coins = await _coinGeckoService.GetCoinsAsync(page, pageSize);
-                return (coins == null) ? NotFound() : Ok(coins);
+                if (coins == null) return NotFound();
+                return  Ok(coins);
             }
             catch (ArgumentException ex)
             {
@@ -58,7 +60,8 @@ namespace API.Controllers
             try
             {
                 var currencies = await _coinGeckoService.GetCurrenciesAsync(page, pageSize);
-                return (currencies == null) ? NotFound() : Ok(currencies);
+                if (currencies == null) return NotFound();
+                return Ok(currencies);
             }
             catch (ArgumentException ex)
             {
@@ -90,22 +93,27 @@ namespace API.Controllers
             }
         }
 
-        //// POST api/<PricesController>
-        //[HttpPost]
-        //public void Post([FromBody] string value)
-        //{
-        //}
-
-        //// PUT api/<PricesController>/5
-        //[HttpPut("{id}")]
-        //public void Put(int id, [FromBody] string value)
-        //{
-        //}
-
-        //// DELETE api/<PricesController>/5
-        //[HttpDelete("{id}")]
-        //public void Delete(int id)
-        //{
-        //}
+        [HttpGet("prices/history")]
+        public async Task<IActionResult> GetHistoryStats([FromQuery] string cryptoId = "bitcoin", [FromQuery] string currency = "usd")
+        {
+            try
+            {
+                var stats = await _cryptoService.GetCryptoHistoryStats(cryptoId, currency);
+                if (stats == null) return NotFound();
+                return Ok(stats);
+            }
+            catch (ArgumentException ex)
+            {
+                return StatusCode(400, ex.Message);
+            }
+            catch (ServiceException ex)
+            {
+                return StatusCode(500, ex.Message);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, ex.Message);
+            }
+        }
     }
 }
