@@ -1,8 +1,71 @@
 [
   {
     "ContainingType": "API.Controllers.CryptoController",
-    "Method": "Get",
-    "RelativePath": "prices",
+    "Method": "GetCoins",
+    "RelativePath": "api/Crypto/coins",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "page",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "pageSize",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "API.Controllers.CryptoController",
+    "Method": "GetCurrencies",
+    "RelativePath": "api/Crypto/currencies",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "page",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "pageSize",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "API.Controllers.CryptoController",
+    "Method": "GetPrice",
+    "RelativePath": "api/Crypto/prices",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "cryptoId",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "currency",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "API.Controllers.CryptoController",
+    "Method": "GetHistoryStats",
+    "RelativePath": "api/Crypto/prices/history",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,

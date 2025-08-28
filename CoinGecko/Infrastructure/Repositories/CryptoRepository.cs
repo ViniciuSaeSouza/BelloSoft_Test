@@ -1,5 +1,6 @@
 ﻿using Domain.Entities;
 using Domain.Interfaces;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,13 +11,22 @@ namespace Infrastructure.Repositories;
 
 public class CryptoRepository : ICryptoRepository
 {
-    public Task<List<Crypto>> GetHistoryAsync(string symbol)
+    private readonly AppDbContext _dbContext;
+
+    public CryptoRepository(AppDbContext dbContext)
     {
-        throw new NotImplementedException();
+        _dbContext = dbContext;
     }
 
-    public Task SavePriceAsync(Crypto price)
+    public async Task<List<Crypto>> GetHistoryAsync(string cryptoId)
     {
-        throw new NotImplementedException();
+        return await _dbContext.CryptoHistory.Where(c => c.CryptoId == cryptoId).ToListAsync();
+
+    }
+
+    public async void SavePriceAsync(Crypto cryptoInfo)
+    {
+        await _dbContext.CryptoHistory.AddAsync(cryptoInfo);
+        _dbContext.SaveChanges();
     }
 }

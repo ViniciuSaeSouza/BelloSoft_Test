@@ -5,7 +5,71 @@
     "version": "1.0"
   },
   "paths": {
-    "/prices": {
+    "/api/Crypto/coins": {
+      "get": {
+        "tags": [
+          "Crypto"
+        ],
+        "parameters": [
+          {
+            "name": "page",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 1
+            }
+          },
+          {
+            "name": "pageSize",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 50
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Crypto/currencies": {
+      "get": {
+        "tags": [
+          "Crypto"
+        ],
+        "parameters": [
+          {
+            "name": "page",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 1
+            }
+          },
+          {
+            "name": "pageSize",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 20
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Crypto/prices": {
       "get": {
         "tags": [
           "Crypto"
@@ -15,14 +79,46 @@
             "name": "cryptoId",
             "in": "query",
             "schema": {
-              "type": "string"
+              "type": "string",
+              "default": "bitcoin"
             }
           },
           {
             "name": "currency",
             "in": "query",
             "schema": {
-              "type": "string"
+              "type": "string",
+              "default": "usd"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Crypto/prices/history": {
+      "get": {
+        "tags": [
+          "Crypto"
+        ],
+        "parameters": [
+          {
+            "name": "cryptoId",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "default": "bitcoin"
+            }
+          },
+          {
+            "name": "currency",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "default": "usd"
             }
           }
         ],

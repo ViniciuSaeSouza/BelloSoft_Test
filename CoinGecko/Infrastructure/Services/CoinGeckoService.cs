@@ -1,6 +1,9 @@
 ﻿
 using Domain.Entities;
 using Domain.Interfaces;
+using Domain.Model;
+using Infrastructure.Exceptions;
+using Microsoft.IdentityModel.Tokens;
 using System.Text.Json;
 
 namespace Infrastructure.Services;
@@ -19,91 +22,162 @@ public class CoinGeckoService : ICoinGeckoService
     //TODO: Refactor to suppot multiple cryptoId's and currency's
     public async Task<Crypto?> GetCryptoAsync(string cryptoId, string currency)
     {
+        // TODO: Separate validation on new ICoinGeckoServiceValidator class
+        ValidateParameters(cryptoId, currency);
+
+        var queryParam = $"simple/price?vs_currencies={currency}&ids={cryptoId}&include_24hr_change=true";
+
         try
         {
-            if (string.IsNullOrEmpty(cryptoId) || string.IsNullOrEmpty(currency)) return null;
+            string? response = await FetchDataAsync(queryParam);
+            if (string.IsNullOrEmpty(response)) return null;
 
-            string? result = await FetchCryptoDataAsync(cryptoId, currency);
-            if (string.IsNullOrEmpty(result)) return null;
-
-            Dictionary<string, Dictionary<string, decimal>>? data = DeserializeData(result, cryptoId);
+            Dictionary<string, Dictionary<string, decimal>>? data = DeserializeData<Dictionary<string, Dictionary<string, decimal>>>(response);
             if (data == null || data.Count == 0) return null;
 
             Crypto? crypto = MapToCrypto(cryptoId, currency, data);
-            if (crypto == null) return null;
 
             return crypto;
         }
-        catch (Exception ex)
+        catch (HttpRequestException ex)
         {
-            Console.WriteLine("Error getting crypto information");
+            throw new ExternalApiException($"Failed to connect to CoinGecko API: {ex.Message}", ex);
         }
-        return null;
-    }
-
-    private async Task<string?> FetchCryptoDataAsync(string cryptoId, string currencyParam)
-    {
-        try
+        catch (JsonException ex)
         {
-            string? response = await _httpClient.GetStringAsync($"simple/price?vs_currencies={currencyParam}&ids={cryptoId}&include_24hr_change=true");
-
-            if (!string.IsNullOrEmpty(response)) return response;
-            return null;
+            throw new ExternalApiException("Failed to parse data CoinGecko response", ex);
         }
         catch (Exception ex)
         {
-            Console.WriteLine($"Error fetching data from external API: {ex.Message}");
+            throw new Exception("Internal server error", ex);
         }
-        return null;
     }
 
-    private Dictionary<string, Dictionary<string, decimal>>? DeserializeData(string result, string cryptoId)
+
+    public async Task<PaginatedResult<Coin>?> GetCoinsAsync(int page = 1, int pageSize = 50)
     {
+        ValidatePaginationParameters(page, pageSize);
+        var queryParam = "coins/list";
         try
         {
-            if (string.IsNullOrEmpty(result)) return null;
+            string? response = await FetchDataAsync(queryParam);
+            if (string.IsNullOrEmpty(response)) return null;
 
-            var serializer = new JsonSerializerOptions
+            IEnumerable<Coin>? coins = DeserializeData<IEnumerable<Coin>>(response);
+            if (coins == null) return null;
+
+            var totalCoins = coins.Count();
+            var paginatedCoins = coins
+                .Skip((page - 1) * pageSize)
+                .Take(pageSize)
+                .ToList();
+
+            return new PaginatedResult<Coin>
             {
-                PropertyNameCaseInsensitive = true
+                Items = paginatedCoins,
+                Page = page,
+                PageSize = pageSize,
+                TotalCount = totalCoins
             };
 
-            var data = JsonSerializer.Deserialize<Dictionary<string, Dictionary<string, decimal>>>(result, serializer);
-
-            if (data != null) return data;
-            return null;
-
         }
-        catch (Exception ex)
+        catch (HttpRequestException ex)
         {
-            Console.WriteLine("Error during deserialization");
+            throw new ExternalApiException("Failed to connect to CoinGecko API", ex);
         }
-        return null;
+        catch (JsonException ex)
+        {
+            throw new ExternalApiException("Failed to parse data from CoinGecko", ex);
+        }
     }
-    private Crypto? MapToCrypto(string cryptoId, string currency, Dictionary<string, Dictionary<string, decimal>> data)
+
+
+    public async Task<PaginatedResult<Currency>?> GetCurrenciesAsync(int page, int pageSize)
     {
+        ValidatePaginationParameters(page, pageSize);
+        var queryParam = "simple/supported_vs_currencies";
+
         try
         {
-            if (data != null && data.TryGetValue(cryptoId, out var cryptoDict))
-            {
-                decimal price = cryptoDict.TryGetValue(currency, out var p) ? p : 0;
-                decimal change24hr = cryptoDict.TryGetValue($"{currency}_24h_change", out var c) ? c : 0;
+            string? response = await FetchDataAsync(queryParam);
 
-                return new Crypto
-                {
-                    CryptoId = cryptoId,
-                    Currency = currency,
-                    Price = price,
-                    Change24hr = change24hr,
-                    RetrievedAt = DateTime.Now
-                };
-            }
+            if (string.IsNullOrEmpty(response)) return null;
+
+            List<string>? data = DeserializeData<List<string>>(response);
+
+            var currencies = data.Select(symbol => new Currency { Symbol = symbol }).ToList();
+
+            var totalCurencies = currencies.Count();
+            var paginatedCurrency = currencies
+                .Skip((page - 1) * pageSize)
+                .Take(pageSize)
+                .ToList();
+
+            return new PaginatedResult<Currency>
+            {
+                Items = paginatedCurrency,
+                Page = page,
+                PageSize = pageSize,
+                TotalCount = totalCurencies
+            };
         }
-        catch (Exception ex)
+        catch (HttpRequestException ex)
         {
-            Console.WriteLine($"Error mapping data to crypto object: {ex.Message}");
+            throw new ExternalApiException("Failed to connect to CoinGecko API", ex);
         }
-        return null;
+        catch (JsonException ex)
+        {
+            throw new ExternalApiException("Failed to parse Json data from CoinGecko response", ex);
+        }
     }
+
+    private static void ValidatePaginationParameters(int page, int pageSize)
+    {
+        if (page == 0 || pageSize == 0) throw new ArgumentException("Page and Page Size cannot be 0");
+    }
+
+    private static void ValidateParameters(string cryptoId, string currency)
+    {
+        if (string.IsNullOrWhiteSpace(cryptoId)) throw new ArgumentException("ERROR: cryptoId cannot be null or empty", nameof(cryptoId));
+        if (string.IsNullOrWhiteSpace(currency)) throw new ArgumentException("ERROR: currency cannot be null or empty", nameof(currency));
+    }
+
+    private async Task<string?> FetchDataAsync(string queryParam)
+    {
+        return await _httpClient.GetStringAsync(queryParam); ;
+    }
+
+    private T? DeserializeData<T>(string response)
+    {
+        if (string.IsNullOrEmpty(response)) return default;
+
+        var serializer = new JsonSerializerOptions
+        {
+            PropertyNameCaseInsensitive = true
+        };
+
+        var data = JsonSerializer.Deserialize<T>(response, serializer);
+
+        return data;
+    }
+
+    private Crypto? MapToCrypto(string cryptoId, string currency, Dictionary<string, Dictionary<string, decimal>> data)
+    {
+        if (!data.TryGetValue(cryptoId, out var cryptoDict)) return null;
+
+        decimal price = cryptoDict.TryGetValue(currency, out var p) ? p : 0;
+        decimal change24hr = cryptoDict.TryGetValue($"{currency}_24h_change", out var c) ? c : 0;
+
+        return new Crypto
+        {
+            CryptoId = cryptoId,
+            Currency = currency,
+            Price = price,
+            Change24hrPercentage = change24hr,
+            RetrievedAt = DateTime.Now
+        };
+
+    }
+
 }
 

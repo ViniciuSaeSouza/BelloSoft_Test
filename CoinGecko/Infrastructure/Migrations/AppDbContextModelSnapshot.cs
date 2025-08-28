@@ -22,24 +22,32 @@ namespace Infrastructure.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("Domain.Entities.CryptoPrice", b =>
+            modelBuilder.Entity("Domain.Entities.Crypto", b =>
                 {
-                    b.Property<string>("Id")
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
 
-                    b.Property<decimal>("PriceUsd")
-                        .HasColumnType("decimal(18,2)");
+                    b.Property<decimal>("Change24hrPercentage")
+                        .HasColumnType("decimal(3,2)");
+
+                    b.Property<string>("CryptoId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Currency")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<decimal>("Price")
+                        .HasColumnType("decimal(18,4)");
 
                     b.Property<DateTime>("RetrievedAt")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("Symbol")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
                     b.HasKey("Id");
 
-                    b.ToTable("CryptoPrices");
+                    b.ToTable("CryptoHistory");
                 });
 #pragma warning restore 612, 618
         }
