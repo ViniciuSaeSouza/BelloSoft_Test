@@ -5,7 +5,7 @@
 namespace Infrastructure.Migrations
 {
     /// <inheritdoc />
-    public partial class CryptoHistory_v21 : Migration
+    public partial class FixDecimalType : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -13,10 +13,10 @@ namespace Infrastructure.Migrations
             migrationBuilder.AlterColumn<decimal>(
                 name: "Change24hrPercentage",
                 table: "CryptoHistory",
-                type: "decimal(3,2)",
+                type: "decimal(18,6)",
                 nullable: false,
                 oldClrType: typeof(decimal),
-                oldType: "decimal(18,4)");
+                oldType: "decimal(6,18)");
         }
 
         /// <inheritdoc />
@@ -28,7 +28,7 @@ namespace Infrastructure.Migrations
                 type: "decimal(18,4)",
                 nullable: false,
                 oldClrType: typeof(decimal),
-                oldType: "decimal(3,2)");
+                oldType: "decimal(18,6)");
         }
     }
 }
