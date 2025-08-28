@@ -22,7 +22,28 @@
   },
   {
     "ContainingType": "API.Controllers.CryptoController",
-    "Method": "Get",
+    "Method": "GetCurrencies",
+    "RelativePath": "api/Crypto/currencies",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "page",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "pageSize",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "API.Controllers.CryptoController",
+    "Method": "GetPrices",
     "RelativePath": "api/Crypto/prices",
     "HttpMethod": "GET",
     "IsController": true,

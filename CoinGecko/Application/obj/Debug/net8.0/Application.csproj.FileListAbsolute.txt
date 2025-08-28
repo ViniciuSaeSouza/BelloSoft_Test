@@ -26,3 +26,5 @@ C:\Users\Vinic\Documents\programacao\BelloSoft_Test\CoinGecko\Application\obj\De
 C:\Users\Vinic\Documents\programacao\BelloSoft_Test\CoinGecko\Application\obj\Debug\net8.0\refint\Application.dll
 C:\Users\Vinic\Documents\programacao\BelloSoft_Test\CoinGecko\Application\obj\Debug\net8.0\Application.pdb
 C:\Users\Vinic\Documents\programacao\BelloSoft_Test\CoinGecko\Application\obj\Debug\net8.0\ref\Application.dll
+C:\Users\Vinic\Documents\programacao\BelloSoft_Test\CoinGecko\Application\bin\Debug\net8.0\Infrastructure.dll
+C:\Users\Vinic\Documents\programacao\BelloSoft_Test\CoinGecko\Application\bin\Debug\net8.0\Infrastructure.pdb

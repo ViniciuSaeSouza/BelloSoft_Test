@@ -1,3 +1,4 @@
+using Application.Services;
 using Domain.Interfaces;
 using Infrastructure.Repositories;
 using Infrastructure.Services;
@@ -19,6 +20,7 @@ builder.Services.AddDbContext<AppDbContext>(options =>
     )
 );
 builder.Services.AddScoped<ICoinGeckoService, CoinGeckoService>();
+builder.Services.AddScoped<ICryptoService, CryptoService>();
 builder.Services.AddHttpClient<ICoinGeckoService, CoinGeckoService>();
 
 

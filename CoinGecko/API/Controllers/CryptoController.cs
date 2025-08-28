@@ -13,10 +13,12 @@ namespace API.Controllers
     [ApiController]
     public class CryptoController : ControllerBase
     {
-        public readonly ICoinGeckoService _coinGeckoService;
+        private readonly ICryptoService _cryptoService;
+        private readonly ICoinGeckoService _coinGeckoService;
 
-        public CryptoController(ICoinGeckoService coinGeckoService)
+        public CryptoController(ICryptoService cryptoService, ICoinGeckoService coinGeckoService)
         {
+            _cryptoService = cryptoService;
             _coinGeckoService = coinGeckoService;
         }
 
@@ -39,24 +41,46 @@ namespace API.Controllers
             {
                 return StatusCode(400, ex.Message);
             }
-            catch(ExternalApiException ex)
+            catch (ExternalApiException ex)
             {
                 return StatusCode(502, ex.Message);
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 return StatusCode(500, ex.Message);
             }
 
         }
 
-        // GET api/<PricesController>/5
-        [HttpGet("prices")]
-        public async Task<IActionResult> Get([FromQuery] string cryptoId, [FromQuery] string currency)
+        [HttpGet("currencies")]
+        public async Task<IActionResult> GetCurrencies([FromQuery] int page = 1, int pageSize = 20)
         {
             try
             {
-                Crypto crypto = await _coinGeckoService.GetCryptoAsync(cryptoId, currency);
+                var currencies = await _coinGeckoService.GetCurrenciesAsync(page, pageSize);
+                return (currencies == null) ? NotFound() : Ok(currencies);
+            }
+            catch (ArgumentException ex)
+            {
+                return StatusCode(400, ex.Message);
+            }
+            catch (ExternalApiException ex)
+            {
+                return StatusCode(502, ex.Message);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, ex.Message);
+            }
+        }
+
+        // GET api/<PricesController>/5
+        [HttpGet("prices")]
+        public async Task<IActionResult> GetPrice([FromQuery] string cryptoId = "bitcoin", [FromQuery] string currency = "usd")
+        {
+            try
+            {
+                Crypto crypto = await _cryptoService.GetCryptoInfo(cryptoId, currency);
                 if (crypto != null) return Ok(crypto);
                 return NotFound();
             }
@@ -64,7 +88,6 @@ namespace API.Controllers
             {
                 return BadRequest(ex.Message);
             }
-
         }
 
         //// POST api/<PricesController>

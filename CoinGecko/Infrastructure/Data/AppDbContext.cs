@@ -6,7 +6,7 @@ namespace Infrastructure.Repositories;
 public class AppDbContext(DbContextOptions<AppDbContext> options) : DbContext(options)
 {
 
-    public DbSet<Crypto> CryptoPrices { get; set; }
+    public DbSet<Crypto> CryptoHistory { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {

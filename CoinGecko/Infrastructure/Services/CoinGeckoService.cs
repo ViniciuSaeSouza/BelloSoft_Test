@@ -1,6 +1,7 @@
 ﻿
 using Domain.Entities;
 using Domain.Interfaces;
+using Domain.Model;
 using Infrastructure.Exceptions;
 using Microsoft.IdentityModel.Tokens;
 using System.Text.Json;
@@ -28,7 +29,7 @@ public class CoinGeckoService : ICoinGeckoService
 
         try
         {
-            string? response = await FetchCryptoDataAsync(queryParam);
+            string? response = await FetchDataAsync(queryParam);
             if (string.IsNullOrEmpty(response)) return null;
 
             Dictionary<string, Dictionary<string, decimal>>? data = DeserializeData<Dictionary<string, Dictionary<string, decimal>>>(response);
@@ -55,11 +56,11 @@ public class CoinGeckoService : ICoinGeckoService
 
     public async Task<PaginatedResult<Coin>?> GetCoinsAsync(int page = 1, int pageSize = 50)
     {
-        if (page == 0 || pageSize == 0) throw new ArgumentException("Page or Page Size cannot be 0");
+        ValidatePaginationParameters(page, pageSize);
         var queryParam = "coins/list";
         try
         {
-            string? response = await FetchCryptoDataAsync(queryParam);
+            string? response = await FetchDataAsync(queryParam);
             if (string.IsNullOrEmpty(response)) return null;
 
             IEnumerable<Coin>? coins = DeserializeData<IEnumerable<Coin>>(response);
@@ -71,13 +72,13 @@ public class CoinGeckoService : ICoinGeckoService
                 .Take(pageSize)
                 .ToList();
 
-            return new PaginatedResult<Coin> 
+            return new PaginatedResult<Coin>
             {
                 Items = paginatedCoins,
                 Page = page,
                 PageSize = pageSize,
                 TotalCount = totalCoins
-            }; 
+            };
 
         }
         catch (HttpRequestException ex)
@@ -90,13 +91,58 @@ public class CoinGeckoService : ICoinGeckoService
         }
     }
 
+
+    public async Task<PaginatedResult<Currency>?> GetCurrenciesAsync(int page, int pageSize)
+    {
+        ValidatePaginationParameters(page, pageSize);
+        var queryParam = "simple/supported_vs_currencies";
+
+        try
+        {
+            string? response = await FetchDataAsync(queryParam);
+
+            if (string.IsNullOrEmpty(response)) return null;
+
+            List<string>? data = DeserializeData<List<string>>(response);
+
+            var currencies = data.Select(symbol => new Currency { Symbol = symbol }).ToList();
+
+            var totalCurencies = currencies.Count();
+            var paginatedCurrency = currencies
+                .Skip((page - 1) * pageSize)
+                .Take(pageSize)
+                .ToList();
+
+            return new PaginatedResult<Currency>
+            {
+                Items = paginatedCurrency,
+                Page = page,
+                PageSize = pageSize,
+                TotalCount = totalCurencies
+            };
+        }
+        catch (HttpRequestException ex)
+        {
+            throw new ExternalApiException("Failed to connect to CoinGecko API", ex);
+        }
+        catch (JsonException ex)
+        {
+            throw new ExternalApiException("Failed to parse Json data from CoinGecko response", ex);
+        }
+    }
+
+    private static void ValidatePaginationParameters(int page, int pageSize)
+    {
+        if (page == 0 || pageSize == 0) throw new ArgumentException("Page and Page Size cannot be 0");
+    }
+
     private static void ValidateParameters(string cryptoId, string currency)
     {
         if (string.IsNullOrWhiteSpace(cryptoId)) throw new ArgumentException("ERROR: cryptoId cannot be null or empty", nameof(cryptoId));
         if (string.IsNullOrWhiteSpace(currency)) throw new ArgumentException("ERROR: currency cannot be null or empty", nameof(currency));
     }
 
-    private async Task<string?> FetchCryptoDataAsync(string queryParam)
+    private async Task<string?> FetchDataAsync(string queryParam)
     {
         return await _httpClient.GetStringAsync(queryParam); ;
     }
@@ -132,5 +178,6 @@ public class CoinGeckoService : ICoinGeckoService
         };
 
     }
+
 }
 

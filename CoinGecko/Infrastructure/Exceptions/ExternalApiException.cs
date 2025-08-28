@@ -1,16 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿namespace Infrastructure.Exceptions;
 
-namespace Infrastructure.Exceptions
+[Serializable]
+public class ExternalApiException : Exception
 {
-    public class ExternalApiException : Exception
-    {
-        public ExternalApiException(string message) : base(message) { }
-        public ExternalApiException(string message, Exception innerException)
-            : base(message, innerException) { }
+    public ExternalApiException(string message) : base(message) { }
+    public ExternalApiException(string message, Exception innerException)
+        : base(message, innerException) { }
 
-    }
 }
