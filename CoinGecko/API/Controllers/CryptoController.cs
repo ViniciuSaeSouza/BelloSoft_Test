@@ -1,5 +1,6 @@
 ﻿using Domain.Entities;
 using Domain.Interfaces;
+using Infrastructure.Exceptions;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
 using System.Net;
@@ -27,16 +28,24 @@ namespace API.Controllers
         /// </summary>
         /// <returns></returns>
         [HttpGet("coins")]
-        public async Task<IActionResult> GetCoins()
+        public async Task<IActionResult> GetCoins([FromQuery] int page = 1, [FromQuery] int pageSize = 50)
         {
             try
             {
-                var coins = await _coinGeckoService.GetCoinsAsync();    
-                return Ok(coins);
+                var coins = await _coinGeckoService.GetCoinsAsync(page, pageSize);
+                return (coins == null) ? NotFound() : Ok(coins);
             }
-            catch (Exception ex)
+            catch (ArgumentException ex)
             {
-                return StatusCode(500, $"Internal Server error: {ex.Message}");
+                return StatusCode(400, ex.Message);
+            }
+            catch(ExternalApiException ex)
+            {
+                return StatusCode(502, ex.Message);
+            }
+            catch(Exception ex)
+            {
+                return StatusCode(500, ex.Message);
             }
 
         }
