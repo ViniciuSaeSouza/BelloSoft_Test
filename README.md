@@ -1,101 +1,190 @@
-# BelloSoft_Test
+# CoinGecko API Integration
 
-Este projeto � uma Web API desenvolvida em .NET 8 que integra com a API p�blica da CoinGecko para fornecer dados sobre criptomoedas. O objetivo � demonstrar boas pr�ticas de desenvolvimento, integra��o com APIs externas e uso de tecnologias modernas.
+A .NET 8 Web API that integrates with the CoinGecko API to fetch and store cryptocurrency data.
+
+## Project Overview
+
+This application provides endpoints for retrieving cryptocurrency information from CoinGecko and storing historical price data. It follows a clean architecture approach with separate layers for domain, application, infrastructure, and API.
+
+### Key Features
+
+- Fetch cryptocurrency data from CoinGecko API
+- Store historical cryptocurrency price data
+- Query historical cryptocurrency statistics
+- Get list of available cryptocurrencies and supported currencies
+- Pagination support for large data sets
+- Automatic database migrations on startup
+
+## Technologies Used
+
+- .NET 8
+- Entity Framework Core
+- SQL Server
+- Swagger/OpenAPI for documentation
+- Clean Architecture pattern
+- Docker containerization
+
+## Architecture
+
+The solution follows Clean Architecture principles and is organized into the following projects:
+
+- **Domain**: Contains entities, interfaces, and business logic
+- **Application**: Contains service implementations and DTOs
+- **Infrastructure**: Contains external API integration, repositories, and database context
+- **API**: Contains controllers and API configuration
+
+## API Documentation
+
+The API is documented using Swagger/OpenAPI. When running the application, you can access the Swagger UI at the root URL.
+
+### Available Endpoints
+
+- `GET /api/crypto/coins`: Get a paginated list of available cryptocurrencies
+- `GET /api/crypto/currencies`: Get a paginated list of supported currencies
+- `GET /api/crypto/prices`: Get current price information for a specific cryptocurrency
+- `GET /api/crypto/prices/history`: Get historical price statistics for a specific cryptocurrency
+
+## Running the Application
+
+### Using Docker
+
+1. Pull the image from Docker Hub:
+   ```bash
+   docker pull saesminerais/coingecko-api
+   ```
+
+2. Run the container:
+   ```bash
+   docker run -d -p 8080:8080 -e "ConnectionString__SQLServer=Server=your_server;Database=CoinGecko;User Id=your_user;Password=your_password;TrustServerCertificate=True;" saesminerais/coingecko-api
+   ```
+
+   Replace the connection string values with your actual database information. The application will automatically apply any pending database migrations on startup.
+
+3. Access the API:
+   Once the container is running, you can access the API at `http://localhost:8080` and the Swagger documentation at `http://localhost:8080/swagger`.
+
+
+### Prerequisites (for local development)
+
+- .NET 8 SDK
+- SQL Server
+- Visual Studio 2022 or similar IDE
+
+### Local Configuration
+
+1. Clone this repository
+2. Create a `.env` file in the root directory with the following variables:
+   ```
+   ConnectionString__SQLServer=your_connection_string_here
+   ```
+3. Restore packages: `dotnet restore`
+4. Run the application: `dotnet run --project API`
+   - Note: Manual migration is no longer needed as the application automatically applies migrations on startup
+
+## Third-Party API Documentation
+
+This project integrates with the CoinGecko API. For more information about the API, visit:
+[CoinGecko API Documentation](https://docs.coingecko.com/v3.0.1/reference/introduction)
+
+## Contributing
+
+1. Fork the repository
+2. Create a new branch: `git checkout -b feature/your-feature-name`
+3. Make your changes
+4. Submit a pull request
+
+---
+
+# Integração com a API CoinGecko (pt-BR)
+
+Uma Web API em .NET 8 que integra com a API CoinGecko para buscar e armazenar dados de criptomoedas.
+
+## Visão Geral do Projeto
+
+Esta aplicação fornece endpoints para recuperar informações de criptomoedas da CoinGecko e armazenar dados históricos de preços. Segue uma abordagem de arquitetura limpa com camadas separadas para domínio, aplicação, infraestrutura e API.
+
+### Principais Funcionalidades
+
+- Buscar dados de criptomoedas da API CoinGecko
+- Armazenar dados históricos de preços de criptomoedas
+- Consultar estatísticas históricas de criptomoedas
+- Obter lista de criptomoedas disponíveis e moedas suportadas
+- Suporte à paginação para grandes conjuntos de dados
+- Migrações automáticas de banco de dados na inicialização
 
 ## Tecnologias Utilizadas
 
 - .NET 8
-- ASP.NET Core Web API
 - Entity Framework Core
-- Swagger/OpenAPI
-- Docker
+- SQL Server
+- Swagger/OpenAPI para documentação
+- Padrão de Arquitetura Limpa (Clean Architecture)
+- Conteinerização com Docker
 
-## Funcionalidades
+## Arquitetura
 
-- Consulta de informa��es sobre criptomoedas usando a CoinGecko API.
-- Endpoints RESTful para acesso aos dados.
-- Documenta��o autom�tica dos endpoints via Swagger.
-- Persist�ncia de dados com SQL Server (configur�vel via string de conex�o).
+A solução segue os princípios de Arquitetura Limpa e está organizada nos seguintes projetos:
 
-## Como Executar
+- **Domain**: Contém entidades, interfaces e lógica de negócios
+- **Application**: Contém implementações de serviços e DTOs
+- **Infrastructure**: Contém integração com APIs externas, repositórios e contexto de banco de dados
+- **API**: Contém controladores e configuração da API
 
-### Pr�-requisitos
+## Documentação da API
 
-- [.NET 8 SDK](https://dotnet.microsoft.com/download/dotnet/8.0)
-- [Docker](https://www.docker.com/) (opcional)
-- SQL Server (local ou remoto)
+A API é documentada usando Swagger/OpenAPI. Ao executar a aplicação, você pode acessar a interface do Swagger no URL raiz.
 
-### Configura��o
+### Endpoints Disponíveis
 
-1. Clone o reposit�rio:
-```sh
-git clone https://github.com/ViniciuSaeSouza/BelloSoft_Test.git
-```
+- `GET /api/crypto/coins`: Obtém uma lista paginada de criptomoedas disponíveis
+- `GET /api/crypto/currencies`: Obtém uma lista paginada de moedas suportadas
+- `GET /api/crypto/prices`: Obtém informações de preço atual para uma criptomoeda específica
+- `GET /api/crypto/prices/history`: Obtém estatísticas históricas de preços para uma criptomoeda específica
 
-2. Configure a string de conex�o do banco de dados no ambiente de uma das formas abaixo:
+## Executando a Aplicação
 
-**Op��o 1: Vari�vel de ambiente em application_properties.json**
-```
-ConnectionString__SQLServer=Server=...;Database=...;User Id=...;Password=...
-```
+### Usando Docker
 
-**Op��o 2: Arquivo .env**
-Crie um arquivo chamado `.env` na pasta API do projeto e adicione ao .env:
-```
-ConnectionString__SQLServer=Server=...;Database=...;User Id=...;Password=...
-```
+1. Baixe a imagem do Docker Hub:
+   ```bash
+   docker pull saesminerais/coingecko-api
+   ```
 
-3. Restaure os pacotes e execute as migra��es (se necess�rio).
+2. Execute o container:
+   ```bash
+   docker run -d -p 8080:8080 -e "ConnectionString__SQLServer=Server=seu_servidor;Database=CoinGecko;User Id=seu_usuario;Password=sua_senha;TrustServerCertificate=True;" saesminerais/coingecko-api
+   ```
 
-```sh 
-dotnet restore
-```
+   Substitua os valores da string de conexão com as informações reais do seu banco de dados. A aplicação aplicará automaticamente quaisquer migrações pendentes de banco de dados na inicialização.
 
-#### Migrations (Entity Framework Core)
+3. Acesse a API:
+   Uma vez que o container esteja em execução, você pode acessar a API em `http://localhost:8080` e a documentação Swagger em `http://localhost:8080/swagger`.
 
-Para criar uma nova migration pelo Package Manager Console do Visual Studio:
-```powershell
-Add-Migration NomeDaMigration -Project Infrastructure -StartupProject CoinGecko/API
-```
+### Pré-requisitos (para desenvolvimento local)
 
-Para aplicar as migrations e atualizar o banco de dados:
-```powershell
-Update-Database NomdeDaMigration
-```
+- .NET 8 SDK
+- SQL Server
+- Visual Studio 2022 ou IDE similar
 
-Certifique-se de que o pacote `Microsoft.EntityFrameworkCore.Tools` est� instalado e que o projeto correto est� selecionado no Visual Studio.
+### Configuração Local
 
-### Executando Localmente
+1. Clone este repositório
+2. Crie um arquivo `.env` no diretório raiz com as seguintes variáveis:
+   ```
+   ConnectionString__SQLServer=sua_string_de_conexao_aqui
+   ```
+3. Restaure os pacotes: `dotnet restore`
+4. Execute a aplicação: `dotnet run --project API`
+   - Observação: Não é mais necessário aplicar migrações manualmente, pois a aplicação aplica migrações automaticamente na inicialização
 
-```sh
-dotnet run --project CoinGecko/API/API.csproj
-```
+## Documentação da API de Terceiros
 
-Acesse a documenta��o Swagger em: `https://localhost:8080/swagger`
+Este projeto integra-se com a API CoinGecko. Para mais informações sobre a API, visite:
+[Documentação da API CoinGecko](https://docs.coingecko.com/v3.0.1/reference/introduction)
 
-### Executando com Docker
+## Contribuindo
 
-```sh
-docker build -t bellosoft_test_api -f CoinGecko/API/Dockerfile .
-docker run -p 8080:8080 bellosoft_test_api
-```
-
-## Documenta��o da API
-
-A API CoinGecko utilizada est� documentada em:  
-[https://docs.coingecko.com/v3.0.1/reference/introduction](https://docs.coingecko.com/v3.0.1/reference/introduction)
-
-A documenta��o dos endpoints da sua API estar� dispon�vel via Swagger ap�s iniciar o projeto.
-
-## Estrutura do Projeto
-
-- `CoinGecko/API`: Projeto principal da Web API
-- `Infrastructure`: Camada de persist�ncia e reposit�rios
-
-## Contribui��o
-
-Pull requests s�o bem-vindos! Para grandes mudan�as, abra uma issue primeiro para discutir o que voc� gostaria de modificar.
-
-## Licen�a
-
-Este projeto est� sob a licen�a MIT.
+1. Faça um fork do repositório
+2. Crie um novo branch: `git checkout -b feature/nome-da-sua-feature`
+3. Faça suas alterações
+4. Envie um pull request
