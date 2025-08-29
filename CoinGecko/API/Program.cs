@@ -10,7 +10,7 @@ using System.Reflection;
 DotNetEnv.Env.Load();
 
 var builder = WebApplication.CreateBuilder(args);
-string connectionString = Environment.GetEnvironmentVariable("ConnectionString__SQLServer");
+string connectionString = Environment.GetEnvironmentVariable("ConnectionString");
 
 // Add services to the container.
 builder.Services.AddControllers();
