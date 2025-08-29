@@ -9554,8 +9554,8 @@
     },
     "Domain/1.0.0": {
       "type": "project",
-      "path": "../Repositories/Domain.csproj",
-      "msbuildProject": "../Repositories/Domain.csproj"
+      "path": "../Domain/Domain.csproj",
+      "msbuildProject": "../Domain/Domain.csproj"
     },
     "Infrastructure/1.0.0": {
       "type": "project",

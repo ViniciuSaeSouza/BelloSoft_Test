@@ -2816,8 +2816,8 @@
     },
     "Domain/1.0.0": {
       "type": "project",
-      "path": "../Repositories/Domain.csproj",
-      "msbuildProject": "../Repositories/Domain.csproj"
+      "path": "../Domain/Domain.csproj",
+      "msbuildProject": "../Domain/Domain.csproj"
     },
     "Infrastructure/1.0.0": {
       "type": "project",
@@ -2863,11 +2863,11 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "projectReferences": {
+            "C:\\Users\\Vinic\\Documents\\programacao\\BelloSoft_Test\\CoinGecko\\Domain\\Domain.csproj": {
+              "projectPath": "C:\\Users\\Vinic\\Documents\\programacao\\BelloSoft_Test\\CoinGecko\\Domain\\Domain.csproj"
+            },
             "C:\\Users\\Vinic\\Documents\\programacao\\BelloSoft_Test\\CoinGecko\\Infrastructure\\Infrastructure.csproj": {
               "projectPath": "C:\\Users\\Vinic\\Documents\\programacao\\BelloSoft_Test\\CoinGecko\\Infrastructure\\Infrastructure.csproj"
-            },
-            "C:\\Users\\Vinic\\Documents\\programacao\\BelloSoft_Test\\CoinGecko\\Repositories\\Domain.csproj": {
-              "projectPath": "C:\\Users\\Vinic\\Documents\\programacao\\BelloSoft_Test\\CoinGecko\\Repositories\\Domain.csproj"
             }
           }
         }
