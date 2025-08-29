@@ -50,19 +50,18 @@ The API is documented using Swagger/OpenAPI. When running the application, you c
 
 1. Pull the image from Docker Hub:
    ```bash
-   docker pull saesminerais/coingecko-api
+   docker pull saesminerais/coingecko-image
    ```
 
 2. Run the container:
    ```bash
-   docker run -d -p 8080:8080 -e "ConnectionString__SQLServer=Server=your_server;Database=CoinGecko;User Id=your_user;Password=your_password;TrustServerCertificate=True;" saesminerais/coingecko-api
+   docker run -d -p 8080:8080 -e "ConnectionString=Server=your_server;Database=CoinGecko;User Id=your_user;Password=your_password;TrustServerCertificate=True;" saesminerais/coingecko-image
    ```
 
    Replace the connection string values with your actual database information. The application will automatically apply any pending database migrations on startup.
 
 3. Access the API:
    Once the container is running, you can access the API at `http://localhost:8080` and the Swagger documentation at `http://localhost:8080/swagger`.
-
 
 ### Prerequisites (for local development)
 
@@ -75,7 +74,7 @@ The API is documented using Swagger/OpenAPI. When running the application, you c
 1. Clone this repository
 2. Create a `.env` file in the root directory with the following variables:
    ```
-   ConnectionString__SQLServer=your_connection_string_here
+   ConnectionString=your_connection_string_here
    ```
 3. Restore packages: `dotnet restore`
 4. Run the application: `dotnet run --project API`
@@ -173,12 +172,12 @@ A API é documentada usando Swagger/OpenAPI. Ao executar a aplicação, você pode a
 
 1. Baixe a imagem do Docker Hub:
    ```bash
-   docker pull saesminerais/coingecko-api
+   docker pull saesminerais/coingecko-image
    ```
 
 2. Execute o container:
    ```bash
-   docker run -d -p 8080:8080 -e "ConnectionString__SQLServer=Server=seu_servidor;Database=CoinGecko;User Id=seu_usuario;Password=sua_senha;TrustServerCertificate=True;" saesminerais/coingecko-api
+   docker run -d -p 8080:8080 -e "ConnectionString=Server=seu_servidor;Database=CoinGecko;User Id=seu_usuario;Password=sua_senha;TrustServerCertificate=True;" saesminerais/coingecko-image
    ```
 
    Substitua os valores da string de conexão com as informações reais do seu banco de dados. A aplicação aplicará automaticamente quaisquer migrações pendentes de banco de dados na inicialização.
@@ -197,7 +196,7 @@ A API é documentada usando Swagger/OpenAPI. Ao executar a aplicação, você pode a
 1. Clone este repositório
 2. Crie um arquivo `.env` no diretório raiz com as seguintes variáveis:
    ```
-   ConnectionString__SQLServer=sua_string_de_conexao_aqui
+   ConnectionString=sua_string_de_conexao_aqui
    ```
 3. Restaure os pacotes: `dotnet restore`
 4. Execute a aplicação: `dotnet run --project API`
