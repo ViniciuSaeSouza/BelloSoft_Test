@@ -1,8 +1,13 @@
 {
   "openapi": "3.0.1",
   "info": {
-    "title": "API",
-    "version": "1.0"
+    "title": "CoinGecko API",
+    "description": "An API for retrieving and storing cryptocurrency data from CoinGecko",
+    "contact": {
+      "name": "Vinícius Saes",
+      "email": "viniciusaesouza@gmail.com"
+    },
+    "version": "v1"
   },
   "paths": {
     "/api/Crypto/coins": {
@@ -10,10 +15,12 @@
         "tags": [
           "Crypto"
         ],
+        "summary": "Retrieves a paginated list of available cryptocurrencies from CoinGecko",
         "parameters": [
           {
             "name": "page",
             "in": "query",
+            "description": "Page number (default: 1)",
             "schema": {
               "type": "integer",
               "format": "int32",
@@ -23,6 +30,7 @@
           {
             "name": "pageSize",
             "in": "query",
+            "description": "Number of items per page (default: 50)",
             "schema": {
               "type": "integer",
               "format": "int32",
@@ -32,7 +40,30 @@
         ],
         "responses": {
           "200": {
-            "description": "OK"
+            "description": "Returns the list of coins"
+          },
+          "400": {
+            "description": "If the request parameters are invalid",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "If no coins were found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "502": {
+            "description": "If there was an error communicating with CoinGecko API"
           }
         }
       }
@@ -42,10 +73,12 @@
         "tags": [
           "Crypto"
         ],
+        "summary": "Retrieves a paginated list of supported currencies from CoinGecko",
         "parameters": [
           {
             "name": "page",
             "in": "query",
+            "description": "Page number (default: 1)",
             "schema": {
               "type": "integer",
               "format": "int32",
@@ -55,6 +88,7 @@
           {
             "name": "pageSize",
             "in": "query",
+            "description": "Number of items per page (default: 20)",
             "schema": {
               "type": "integer",
               "format": "int32",
@@ -64,7 +98,30 @@
         ],
         "responses": {
           "200": {
-            "description": "OK"
+            "description": "Returns the list of currencies"
+          },
+          "400": {
+            "description": "If the request parameters are invalid",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "If no currencies were found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "502": {
+            "description": "If there was an error communicating with CoinGecko API"
           }
         }
       }
@@ -74,10 +131,12 @@
         "tags": [
           "Crypto"
         ],
+        "summary": "Retrieves current price information for a specific cryptocurrency and currency",
         "parameters": [
           {
             "name": "cryptoId",
             "in": "query",
+            "description": "The ID of the cryptocurrency (default: bitcoin)",
             "schema": {
               "type": "string",
               "default": "bitcoin"
@@ -86,6 +145,7 @@
           {
             "name": "currency",
             "in": "query",
+            "description": "The currency to display the price in (default: usd)",
             "schema": {
               "type": "string",
               "default": "usd"
@@ -94,7 +154,27 @@
         ],
         "responses": {
           "200": {
-            "description": "OK"
+            "description": "Returns the cryptocurrency information"
+          },
+          "400": {
+            "description": "If the request parameters are invalid",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "If the cryptocurrency was not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
           }
         }
       }
@@ -104,10 +184,12 @@
         "tags": [
           "Crypto"
         ],
+        "summary": "Retrieves historical price statistics for a specific cryptocurrency and currency",
         "parameters": [
           {
             "name": "cryptoId",
             "in": "query",
+            "description": "The ID of the cryptocurrency (default: bitcoin)",
             "schema": {
               "type": "string",
               "default": "bitcoin"
@@ -116,6 +198,7 @@
           {
             "name": "currency",
             "in": "query",
+            "description": "The currency to display the prices in (default: usd)",
             "schema": {
               "type": "string",
               "default": "usd"
@@ -124,11 +207,64 @@
         ],
         "responses": {
           "200": {
-            "description": "OK"
+            "description": "Returns the historical statistics"
+          },
+          "400": {
+            "description": "If the request parameters are invalid",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "If no historical data was found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "If there was an error processing the request"
           }
         }
       }
     }
   },
-  "components": { }
+  "components": {
+    "schemas": {
+      "ProblemDetails": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string",
+            "nullable": true
+          },
+          "title": {
+            "type": "string",
+            "nullable": true
+          },
+          "status": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "detail": {
+            "type": "string",
+            "nullable": true
+          },
+          "instance": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": { }
+      }
+    }
+  }
 }

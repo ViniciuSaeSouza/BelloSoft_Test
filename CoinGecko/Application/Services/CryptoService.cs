@@ -2,8 +2,8 @@
 using Domain.Exceptions;
 using Domain.Interfaces;
 using Domain.DTOS;
-using Infrastructure.Repositories;
 using Microsoft.EntityFrameworkCore;
+using Infrastructure.Data;
 
 namespace Application.Services;
 
