@@ -1,5 +1,4 @@
-./CoinGecko/.vs/
-./CoinGecko/*/obj/
-.vs/
-
-/CoinGecko/*/bin/
+CoinGecko/.vs
+CoinGecko/*/obj/
+CoinGecko/*/bin/
+.vs
