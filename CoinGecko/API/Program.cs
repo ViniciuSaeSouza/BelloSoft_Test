@@ -1,6 +1,6 @@
 using Application.Services;
 using Domain.Interfaces;
-using Infrastructure.Repositories;
+using Infrastructure.Data;
 using Infrastructure.Services;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
@@ -57,6 +57,12 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+
+// Expose swagger in production build, just for this test context
+app.UseSwagger();
+app.UseSwaggerUI(c => {
+    c.SwaggerEndpoint("/swagger/v1/swagger.json", "CoinGecko API v1");
+});
 
 app.UseHttpsRedirection();
 app.UseAuthorization();
