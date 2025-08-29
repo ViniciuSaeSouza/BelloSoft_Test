@@ -1,5 +1,4 @@
-./CoinGecko/.vs/
-./CoinGecko/obj/
-.vs/
-
-/CoinGecko/Domain/bin/Debug/net8.0
+CoinGecko/.vs
+CoinGecko/*/obj/
+CoinGecko/*/bin/
+.vs
