@@ -51,6 +51,22 @@ builder.Services.AddHttpClient<ICoinGeckoService, CoinGeckoService>();
 
 var app = builder.Build();
 
+// Apply database migrations automatically at startup
+try
+{
+    using (var scope = app.Services.CreateScope())
+    {
+        var dbContext = scope.ServiceProvider.GetRequiredService<AppDbContext>();
+        Console.WriteLine("Applying database migrations...");
+        dbContext.Database.Migrate();
+        Console.WriteLine("Database migrations applied successfully.");
+    }
+}
+catch (Exception ex)
+{
+    Console.WriteLine($"An error occurred while applying migrations: {ex.Message}");
+}
+
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
@@ -58,7 +74,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-// Expose swagger in production build, just for this test context
+// Expose swagger in production build, just for this techinical test context
 app.UseSwagger();
 app.UseSwaggerUI(c => {
     c.SwaggerEndpoint("/swagger/v1/swagger.json", "CoinGecko API v1");
