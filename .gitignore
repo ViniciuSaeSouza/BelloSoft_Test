@@ -2,4 +2,4 @@
 ./CoinGecko/*/obj/
 .vs/
 
-/CoinGecko/Domain/bin/Debug/net8.0
+/CoinGecko/*/bin/
