@@ -93,6 +93,32 @@ This project integrates with the CoinGecko API. For more information about the A
 3. Make your changes
 4. Submit a pull request
 
+## Roadmap
+
+The following features and improvements are planned for future releases:
+
+- **Authentication & Authorization**
+  - Implement JWT-based authentication
+  - Add role-based access control
+  - Secure sensitive endpoints
+
+- **Unit Testing**
+  - Add unit tests for service layer
+  - Implement integration tests for API endpoints
+  - Setup CI pipeline for automated testing
+
+- **Performance & Usability**
+  - Add caching layer to reduce API calls
+  - Implement rate limiting
+  - Create better error handling and logging
+
+- **New Features**
+  - Cryptocurrency price alerts
+  - Historical data visualization endpoints
+  - Export data to various formats
+
+Contributions in any of these areas are welcome!
+
 ---
 
 # Integração com a API CoinGecko (pt-BR)
@@ -188,3 +214,29 @@ Este projeto integra-se com a API CoinGecko. Para mais informações sobre a API
 2. Crie um novo branch: `git checkout -b feature/nome-da-sua-feature`
 3. Faça suas alterações
 4. Envie um pull request
+
+## Roadmap
+
+As seguintes funcionalidades e melhorias estão planejadas para versões futuras:
+
+- **Autenticação e Autorização**
+  - Implementar autenticação baseada em JWT
+  - Adicionar controle de acesso baseado em função
+  - Proteger endpoints sensíveis
+
+- **Teste de Unidade**
+  - Adicionar testes de unidade para a camada de serviço
+  - Implementar testes de integração para endpoints da API
+  - Configurar pipeline CI para testes automatizados
+
+- **Desempenho e Usabilidade**
+  - Adicionar camada de cache para reduzir chamadas à API
+  - Implementar limitação de taxa
+  - Criar melhor tratamento de erro e registro de logs
+
+- **Novas Funcionalidades**
+  - Alertas de preço de criptomoedas
+  - Endpoints de visualização de dados históricos
+  - Exportar dados para vários formatos
+
+Contribuições em qualquer uma dessas áreas são bem-vindas!
